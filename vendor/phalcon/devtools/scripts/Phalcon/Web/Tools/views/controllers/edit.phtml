@@ -1,0 +1,27 @@
+<?php
+/**
+ * Local variables
+ * @var \Phalcon\Mvc\View\Engine $this
+ * @var string $name
+ */
+?>
+
+<?php echo $this->getContent() ?>
+
+<h2>Editing Controller: <?php echo str_replace('.php', '', $name); ?></h2>
+
+<form method="post" action="<?php echo $this->url->get("webtools.php?_url=/controllers/save") ?>">
+
+    <div class="text-right">
+        <p>
+            <input type="submit" class="btn btn-primary" value="Save">
+        </p>
+    </div>
+
+	<?php echo $this->tag->textArea(array('code', 'cols' => 50, 'rows' => 20)) ?>
+
+	<?php echo $this->tag->hiddenField('name') ?>
+
+</form>
+
+<?php Phalcon\Web\CodeMirror::importResources(); ?>

@@ -1,0 +1,30 @@
+<div class="my-28">
+	<div class="max-w-lg mx-auto">
+		<?= $this->tag->form(["products/register", "enctype" => "multipart/form-data"]);  ?>
+		<div class="mb-6">
+			<label for="name" class="text-sm font-medium text-gray-900 block mb-2">Name</label>
+			<?= $this->tag->textField(["name", "class" => "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"]); ?>
+		</div>
+		<div class="mb-6">
+			<label for="description" class="text-sm font-medium text-gray-900 block mb-2">Description</label>
+			<?= $this->tag->textArea(["description", "class" => "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"]); ?>
+		</div>
+		<div class="mb-6">
+			<label for="price" class="text-sm font-medium text-gray-900 block mb-2">Price</label>
+			<?= $this->tag->numericField(["price", "class" => "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"]); ?>
+		</div>
+		<div class="mb-6">
+			<label for="inventory" class="text-sm font-medium text-gray-900 block mb-2">Inventory</label>
+			<?= $this->tag->numericField(["inventory", "class" => "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"]); ?>
+		</div>
+
+		<div class="mb-6">
+			<label for="inventory" class="text-sm font-medium text-gray-900 block mb-2">Photo</label>
+			<?= $this->tag->fileField(["photo", "class" => "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"]); ?>
+		</div>
+
+		<?= $this->tag->submitButton(['Add', 'class' => 'text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm rounded w-32 p-2 text-center']) ?>
+
+		</form>
+	</div>
+</div>

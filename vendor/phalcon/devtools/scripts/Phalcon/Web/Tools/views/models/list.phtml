@@ -1,0 +1,52 @@
+<?php
+/**
+ * Local variables
+ * @var \Phalcon\Mvc\View\Engine $this
+ * @var null|string $modelsDir
+ * @var closure $fileOwner Get file owner/group closure
+ */
+?>
+
+<?php echo $this->getContent() ?>
+
+<h1>Edit Models</h1>
+
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<td><strong>Name</strong></td>
+			<td width="10%"><strong>Size</strong></td>
+			<td width="15%"><strong>Owner</strong></td>
+			<td width="10%"><strong>Actions</strong></td>
+		</tr>
+	</thead>
+	<tbody>
+        <?php if (!$modelsDir): ?>
+        <tr>
+            <td colspan="3">
+                <p class="text-center text-error">
+                    Sorry, Web Tools doesn't know where is the models directory. <br>
+                    Please add to <code>application</code> section <code>modelsDir</code> param with valid path.
+                </p>
+            </td>
+        </tr>
+        <?php else: ?>
+            <?php $iterator = new DirectoryIterator($modelsDir); foreach($iterator as $file): ?>
+                <?php if (!$file->isDot()): ?>
+                    <tr>
+                        <td><?php echo $file->getBasename('.php'); ?></td>
+                        <td><?php echo $file->getSize() . ' b' ?></td>
+                        <td><?php echo $fileOwner($file); ?></td>
+                        <td>
+                            <?php if ($file->isWritable()): ?>
+                                <a href="<?php echo $this->url->get(sprintf('webtools.php?_url=/models/edit/%s', $file->getFileName())) ?>" class="btn">Edit</a>
+                            <?php else: ?>
+                                <span class="btn disabled muted">Readonly</span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+	</tbody>
+</table>
